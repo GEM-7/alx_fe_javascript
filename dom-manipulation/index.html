@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Quote Generator</title>
+</head>
+
+<body>
+  <h1>Dynamic Quote Generator</h1>
+  <!-- Message Area for dynamic feedback -->
+    <div id="message-area" style="color: green; font-weight: bold;"></div>
+  <div id="quoteDisplay" style="background-color: antiquewhite; padding: 40px; width: 500px; height: fit-content;">
+  </div>
+  <button id="newQuote">Show New Quote</button>
+  <div style=" display: flex; flex-flow: column; width: 40%; gap: 20px; padding: 40px;">
+    <h2>Add New Quote</h2>
+    <input id="newQuoteText" type="text" placeholder="Enter a new quote"  style=" height: 30px;"/>
+    <input id="newQuoteCategory" type="text" placeholder="Enter quote category" style=" height: 30px;"/>
+    <button onclick="addQuote()"  style="width: 30%;">Add Quote</button>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
