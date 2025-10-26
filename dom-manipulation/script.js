@@ -70,11 +70,12 @@ function addQuote() {
     quoteTextInput.value = '';
     categoryInput.value = '';
 
+    showMessage('✅ New quote added successfully!');
 
-    function createAddQuoteForm() {
-        showRandomQuote();
-    }
+    showRandomQuote();
 }
+
+
 
 // --- Initialization ---
 function initialize() {
@@ -91,6 +92,10 @@ function initialize() {
 
     // Display an initial random quote on load
     showRandomQuote();
+
+    function createAddQuoteForm() {
+        addQuote();
+    }
 }
 
 // Run the initialization function when the document is ready
