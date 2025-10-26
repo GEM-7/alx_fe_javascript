@@ -10,18 +10,22 @@
 <body>
   <h1>Dynamic Quote Generator</h1>
   <!-- Message Area for dynamic feedback -->
-    <div id="message-area" style="color: green; font-weight: bold;"></div>
+  <div id="message-area" style="color: green; font-weight: bold;"></div>
   <div id="quoteDisplay" style="background-color: antiquewhite; padding: 40px; width: 500px; height: 100px;">
   </div>
   <button id="newQuote">Show New Quote</button>
   <div style=" display: flex; flex-flow: column; width: 40%; gap: 20px; padding: 40px;">
     <h2>Add New Quote</h2>
-    <input id="newQuoteText" type="text" placeholder="Enter a new quote"  style=" height: 30px;"/>
-    <input id="newQuoteCategory" type="text" placeholder="Enter quote category" style=" height: 30px;"/>
-    <button onclick="addQuote()"  style="width: 30%;">Add Quote</button>
+    <input id="newQuoteText" type="text" placeholder="Enter a new quote" style=" height: 30px;" />
+    <input id="newQuoteCategory" type="text" placeholder="Enter quote category" style=" height: 30px;" />
+    <button onclick="addQuote()" style="width: 30%;">Add Quote</button>
   </div>
   <div>
     <button onclick="exportQuotes()" style="width: 30%;">Export Quotes</button>
+  </div>
+  <div>
+    <p><em>Import your Quotes (JSON files only)</em></p>
+    <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
   </div>
   <script src="script.js"></script>
 </body>
