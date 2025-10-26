@@ -28,17 +28,41 @@ function showMessage(message) {
 
 // Function to display a random quote
 function showRandomQuote() {
+
+    while (quoteDisplay.firstChild) {
+        quoteDisplay.removeChild(quoteDisplay.firstChild);
+    }
+
     const randomIndex = Math.floor(Math.random() * quotes.length);
     const Quote = quotes[randomIndex];
-    quoteDisplay.innerHTML = `
-    <figure>
-        <blockquote>
-            "${Quote.text}"
-        </blockquote>
-        <figcaption>
-            — Category: ${Quote.category}
-        </figcaption>
-    </figure>`
+
+    const figure = document.createElement('figure');
+    const blockquote = document.createElement('blockquote');
+    const figcaption = document.createElement('figcaption');
+    
+    // Text nodes for content
+    const quoteTextNode = document.createTextNode(`"${Quote.text}"`);
+    const categoryTextNode = document.createTextNode(`— Category: ${Quote.category}`);
+    
+    // Build the hierarchy using appendChild
+    blockquote.appendChild(quoteTextNode);
+    figcaption.appendChild(categoryTextNode);
+    
+    figure.appendChild(blockquote);
+    figure.appendChild(figcaption);
+    
+    // Add the final structure to the DOM
+    quoteDisplay.appendChild(figure);
+
+    // quoteDisplay.innerHTML = `
+    // <figure>
+    //     <blockquote>
+    //         "${Quote.text}"
+    //     </blockquote>
+    //     <figcaption>
+    //         — Category: ${Quote.category}
+    //     </figcaption>
+    // </figure>`
     showMessage(''); // Clear any previous messages
 };
 
