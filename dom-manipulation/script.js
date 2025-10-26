@@ -29,28 +29,30 @@ function showMessage(message) {
 // Function to display a random quote
 function showRandomQuote() {
 
-    while (quoteDisplay.firstChild) {
-        quoteDisplay.removeChild(quoteDisplay.firstChild);
-    }
-
     const randomIndex = Math.floor(Math.random() * quotes.length);
     const Quote = quotes[randomIndex];
 
+    // Displaing the quote using DOM manipulation
+    // Create elements
     const figure = document.createElement('figure');
     const blockquote = document.createElement('blockquote');
     const figcaption = document.createElement('figcaption');
-    
+
+    // Clear previous content
+    while (quoteDisplay.firstChild) {
+        quoteDisplay.removeChild(quoteDisplay.firstChild);
+    }
     // Text nodes for content
     const quoteTextNode = document.createTextNode(`"${Quote.text}"`);
     const categoryTextNode = document.createTextNode(`— Category: ${Quote.category}`);
-    
+
     // Build the hierarchy using appendChild
     blockquote.appendChild(quoteTextNode);
     figcaption.appendChild(categoryTextNode);
-    
+
     figure.appendChild(blockquote);
     figure.appendChild(figcaption);
-    
+
     // Add the final structure to the DOM
     quoteDisplay.appendChild(figure);
 
@@ -65,7 +67,7 @@ function showRandomQuote() {
     //     </figcaption>
     // </figure>`
     // ----------------------------------------
-    
+
     showMessage(''); // Clear any previous messages
 };
 
@@ -79,7 +81,7 @@ function addQuote() {
         showMessage('🚨 Please provide both a quote and a category.');
         return; // Stop the function if validation fails
     }
-    
+
     // Check for duplicates (Simple check on text)
     const isDuplicate = quotes.some(quote => quote.text.toLowerCase() === newQuoteText.toLowerCase());
     if (isDuplicate) {
