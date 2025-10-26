@@ -15,17 +15,26 @@ let categoryInput;
 let categoryFilter;
 
 
+// Function to clear all categories from the dropdown except the first one (All Categories).
+function clearDropdown() {
+    if (!categoryFilter) return;
+
+    // Remove all children starting from the second element (index 1)
+    while (categoryFilter.childElementCount > 1) {
+        categoryFilter.removeChild(categoryFilter.lastChild);
+    }
+}
+
 // Function to populate categories in the dropdown
 function populateCategories() {
     if (!categoryFilter) return;
 
-    while (categoryFilter.childElementCount > 1) {
-        categoryFilter.removeChild(categoryFilter.lastChild);
-    }
-
+    clearDropdown();
+    
+    // Using .map to efficiently extract categories
     const allCategories = quotes.map(quote => quote.category);
     const uniqueCategories = [...new Set(allCategories)].sort();
-
+    
     uniqueCategories.forEach(category => {
         const option = document.createElement('option');
         option.value = category;
@@ -96,8 +105,6 @@ function showRandomQuote() {
     //     </figcaption>
     // </figure>`
     // ----------------------------------------
-
-    // alert(''); // Clear any previous messages
 };
 
 // Function to add a new quote
