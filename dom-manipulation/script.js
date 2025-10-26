@@ -13,12 +13,11 @@ const FETCH_INTERVAL = 60000;
 
 let quotes = JSON.parse(localStorage.getItem("localquotes")) || defaultQuotes;
 let quoteDisplay;
-let messageArea; // UI element for notifications
+let messageArea;
 let newQuoteBtn;
 let quoteTextInput;
 let categoryInput;
 let categoryFilter;
-// Removed: let serverQuotesCache = []; // This variable is no longer used.
 
 // --- Notification and Conflict Resolution UI Functions ---
 
@@ -97,7 +96,7 @@ function resolveConflict(precedence, serverData) {
     showRandomQuote();
 }
 
-// --- API Simulation Functions (Modified for Conflict Check) ---
+// --- API Simulation Functions ---
 
 /**
  * Simulates fetching initial data from the server.
@@ -107,13 +106,13 @@ async function fetchQuotesFromServer() {
         const response = await fetch(API_URL);
         const data = await response.json();
 
-        // 1. Map the mock API data to our quote structure
+        // Map the mock API data to our quote structure
         const remoteQuotes = data.map(item => ({
             text: item.title,
             category: 'API-' + (item.userId % 3 + 1)
         })).slice(0, 10);
 
-        // 2. CONFLICT CHECK
+        // CONFLICT CHECK
         const currentApiQuotes = quotes.filter(q => q.category.startsWith('API-'));
         const remoteQuotesJSON = JSON.stringify(remoteQuotes.map(q => q.text).sort());
         const currentApiQuotesJSON = JSON.stringify(currentApiQuotes.map(q => q.text).sort());
@@ -154,7 +153,7 @@ function startPeriodicFetch() {
 }
 
 /**
- * Manual trigger for conflict checking (assumed to be wired to a button).
+ * Manual trigger for conflict checking
  */
 function manualConflictCheck() {
     showNotification('🔍 Checking server for updates...', 'info');
@@ -240,8 +239,6 @@ function showRandomQuote() {
         while (quoteDisplay.firstChild) {
             quoteDisplay.removeChild(quoteDisplay.firstChild);
         }
-        // Note: Removed alert to rely on notification system, but kept if you prefer hard stops
-        // alert(`⚠️ No quotes found in the '${selectedCategory}' category.`); 
         return;
     }
     const randomIndex = Math.floor(Math.random() * quotesToDisplay.length);
@@ -363,7 +360,7 @@ function initialize() {
     }
 
     populateCategories();
-    
+
     showRandomQuote(); 
 
     startPeriodicFetch();
