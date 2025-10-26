@@ -54,6 +54,7 @@ function showRandomQuote() {
     // Add the final structure to the DOM
     quoteDisplay.appendChild(figure);
 
+    // --------- Alternative Approach ----------
     // quoteDisplay.innerHTML = `
     // <figure>
     //     <blockquote>
@@ -63,6 +64,8 @@ function showRandomQuote() {
     //         — Category: ${Quote.category}
     //     </figcaption>
     // </figure>`
+    // ----------------------------------------
+    
     showMessage(''); // Clear any previous messages
 };
 
