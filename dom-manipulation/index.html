@@ -9,8 +9,10 @@
 
 <body>
   <h1>Dynamic Quote Generator</h1>
-  <!-- Message Area for dynamic feedback -->
-  <div id="message-area" style="color: green; font-weight: bold;"></div>
+  <select id="categoryFilter" onchange="filterQuotes()" style="margin-bottom: 20px;">
+    <option value="all">All Categories</option>
+    <!-- Dynamically populated categories -->
+  </select>
   <div id="quoteDisplay" style="background-color: antiquewhite; padding: 40px; width: 500px; height: 100px;">
   </div>
   <button id="newQuote">Show New Quote</button>
