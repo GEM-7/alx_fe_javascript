@@ -57,7 +57,10 @@ function addQuote() {
     quoteTextInput.value = '';
     categoryInput.value = '';
 
-    showRandomQuote();
+    
+    function createAddQuoteForm() {
+        showRandomQuote();
+    }
 }
 
 // --- Initialization ---
