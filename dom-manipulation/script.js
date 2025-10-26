@@ -29,13 +29,42 @@ let categoryFilter;
 function showNotification(message, type = 'success') {
     if (!messageArea) return;
 
+    // Set the inline styles based on the notification type
+    let backgroundColor;
+    let color;
+    let displayStyle = 'block';
+
+    switch (type) {
+        case 'success':
+            backgroundColor = '#d4edda'; // Light green
+            color = '#155724'; // Dark green
+            break;
+        case 'warning':
+            backgroundColor = '#fff3cd'; // Light yellow
+            color = '#856404'; // Dark yellow
+            break;
+        case 'error':
+            backgroundColor = '#f8d7da'; // Light red
+            color = '#721c24'; // Dark red
+            break;
+        case 'info':
+        default:
+            backgroundColor = '#d1ecf1'; // Light blue
+            color = '#0c5460'; // Dark blue
+            break;
+    }
+
     messageArea.textContent = message;
-    messageArea.className = `notification ${type}`;
+    messageArea.style.backgroundColor = backgroundColor;
+    messageArea.style.color = color;
+    messageArea.style.display = displayStyle;
 
     // Clear notification after 5 seconds
     setTimeout(() => {
         messageArea.textContent = '';
-        messageArea.className = 'notification';
+        messageArea.style.display = 'none';
+        messageArea.style.backgroundColor = '';
+        messageArea.style.color = '';
     }, 5000);
 }
 
