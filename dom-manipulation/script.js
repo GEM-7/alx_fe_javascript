@@ -47,6 +47,19 @@ function addQuote() {
     const newQuoteText = quoteTextInput.value.trim();
     const newQuoteCategory = categoryInput.value.trim();
 
+    // Input Validation Logic
+    if (!newQuoteText || !newQuoteCategory) {
+        showMessage('🚨 Please provide both a quote and a category.');
+        return; // Stop the function if validation fails
+    }
+    
+    // Check for duplicates (Simple check on text)
+    const isDuplicate = quotes.some(quote => quote.text.toLowerCase() === newQuoteText.toLowerCase());
+    if (isDuplicate) {
+        showMessage('⚠️ This quote already exists!');
+        return;
+    }
+
     const newQuote = {
         text: newQuoteText,
         category: newQuoteCategory
@@ -57,7 +70,7 @@ function addQuote() {
     quoteTextInput.value = '';
     categoryInput.value = '';
 
-    
+
     function createAddQuoteForm() {
         showRandomQuote();
     }
